@@ -14,4 +14,5 @@ ENV BASH_ENV=${RH_PHP71_ROOT}/enable \
     PROMPT_COMMAND=". ${RH_PHP71_ROOT}/enable"
 
 ADD composer-installer.sh /root/composer-installer.sh
+RUN chmod +x /root/composer-installer.sh
 RUN source ${RH_PHP71_ROOT}/enable && ./composer-installer.sh && ./composer.phar global require hirak/prestissimo
