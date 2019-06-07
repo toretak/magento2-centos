@@ -1,6 +1,6 @@
 FROM centos:latest
 
-ENV INSTALL_PKGS="git wget unzip rh-php71-php-cli rh-php71-php-bcmath rh-php71-php-intl rh-php71-php-gd rh-php71-php-mbstring rh-php71-php-opcache rh-php71-php-soap rh-php71-php-zip rh-php71-php-xml rh-php71-php-pdo rh-php71-php-mysqlnd"
+ENV INSTALL_PKGS="git wget unzip rh-php71-php-cli rh-php71-php-bcmath rh-php71-php-intl rh-php71-php-gd rh-php71-php-mbstring rh-php71-php-opcache rh-php71-php-soap rh-php71-php-zip rh-php71-php-xml rh-php71-php-pdo rh-php71-php-mysqlnd dos2unix"
 
 WORKDIR /root
 
