@@ -13,5 +13,7 @@ ENV BASH_ENV=${RH_PHP71_ROOT}/enable \
     ENV=${RH_PHP71_ROOT}/enable \
     PROMPT_COMMAND=". ${RH_PHP71_ROOT}/enable"
 
+
+RUN source ${RH_PHP71_ROOT}/enable 
 RUN curl -sS https://getcomposer.org/installer | php && mv composer.phar /usr/local/bin/composer && chmod +x /usr/local/bin/composer
-RUN source ${RH_PHP71_ROOT}/enable && composer global require hirak/prestissimo
+RUN composer global require hirak/prestissimo
