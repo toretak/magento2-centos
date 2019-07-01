@@ -1,20 +1,15 @@
-FROM centos:latest
+FROM registry.centos.org/centos:latest
 
-ENV RH_PHP71_ROOT=/opt/rh/rh-php71
-ENV BASH_ENV=${RH_PHP71_ROOT}/enable \
-    ENV=${RH_PHP71_ROOT}/enable \
-    PROMPT_COMMAND=". ${RH_PHP71_ROOT}/enable" \
-    INSTALL_PKGS="git wget curl unzip dos2unix rpm-build rpmdevtools rh-php71-php-cli rh-php71-php-bcmath rh-php71-php-intl rh-php71-php-gd rh-php71-php-mbstring rh-php71-php-opcache rh-php71-php-soap rh-php71-php-zip rh-php71-php-xml rh-php71-php-pdo rh-php71-php-mysqlnd bsdtar"
+ENV INSTALL_PKGS="git wget curl unzip rpm-build rpmdevtools php71u-cli php71u-bcmath php71u-intl php71u-gd php71u-mbstring php71u-opcache php71u-soap php71u-xml php71u-json php71u-pdo php71u-mysqlnd MariaDB-client"
 
-RUN export tar='bsdtar'
-
-RUN yum -y update --setopt=tsflags=nodocs && \
-    yum -y install --setopt=tsflags=nodocs centos-release-scl-rh && \
+RUN echo $'[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.2/centos7-amd64\nenabled = 1\ngpgcheck = 1' > /etc/yum.repos.d/MariaDB.repo && \
+    rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB && \
+    yum -y install --setopt=tsflags=nodocs https://centos7.iuscommunity.org/ius-release.rpm epel-release && \
+    yum -y update --setopt=tsflags=nodocs && \
     yum -y install --setopt=tsflags=nodocs $INSTALL_PKGS && \
     yum -y clean all
 
-RUN source ${RH_PHP71_ROOT}/enable && \
-    curl -sS https://getcomposer.org/installer | php && \
+RUN curl -sS https://getcomposer.org/installer | php && \
     mv composer.phar /usr/local/bin/composer && \
     chmod +x /usr/local/bin/composer && \
     composer global require hirak/prestissimo
