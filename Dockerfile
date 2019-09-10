@@ -9,7 +9,7 @@ RUN echo $'[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.2/cent
     yum -y install --setopt=tsflags=nodocs $INSTALL_PKGS && \
     yum -y clean all
 
-RUN curl -sS https://getcomposer.org/installer | php && \
-    mv composer.phar /usr/local/bin/composer && \
-    chmod +x /usr/local/bin/composer && \
-    composer global require hirak/prestissimo
+RUN - curl -sL https://rpm.nodesource.com/setup_10.x | bash - && \
+    yum install -y nodejs && \
+    npm install -g grunt && \
+    npm install -g imagemagick
