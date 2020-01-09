@@ -1,4 +1,4 @@
-# magento2-centos
+# magento2-centos php72
 
 Docker image contains latest centos and extensions required by Magento2.
 
