@@ -1,6 +1,7 @@
 FROM registry.centos.org/centos:latest
 
-ENV INSTALL_PKGS="git wget curl unzip rpm-build rpmdevtools php71u-cli php71u-bcmath php71u-intl php71u-gd php71u-mbstring php71u-opcache php71u-soap php71u-xml php71u-json php71u-pdo php71u-mysqlnd MariaDB-client"
+ENV INSTALL_PKGS="git wget curl unzip rpm-build rpmdevtools php72u-cli php72u-fpm php72u-pdo php72u-mysqlnd php72u-opcache php72u-xml php72u-gd php72u-intl php72u-mbstring php72u-process php72u-bcmath php72u-json php72u-soap php72u-pecl-redis php72u-sodium libsodium MariaDB-client"
+
 
 RUN echo $'[mariadb]\nname = MariaDB\nbaseurl = http://yum.mariadb.org/10.2/centos7-amd64\nenabled = 1\ngpgcheck = 1' > /etc/yum.repos.d/MariaDB.repo && \
     rpm --import https://yum.mariadb.org/RPM-GPG-KEY-MariaDB && \
